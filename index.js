@@ -99,7 +99,7 @@ const storage = multer.diskStorage({
   });
 
   app.get("/upload", (req, res) => {
-    res.render("upload.ejs");
+    res.render("upload");
   })
 
 
@@ -216,7 +216,7 @@ app.use(express.urlencoded({extended:false}))
 
 app.get("/",async(req,res)=>{
     const users = await Usermodel.find({});
-    res.render("home.ejs",{
+    res.render("home",{
         title:"this is homepage",
         users:users
     })
@@ -227,7 +227,7 @@ const ADMIN_USER = 'admin@xyz.com';
 const ADMIN_PASS = 'admin';
 
 app.get("/admin-login", (req, res) => {
-    res.render("adminlogin.ejs");
+    res.render("adminlogin");
 })
 
 app.post("/adminlogin", (req, res) => {
@@ -247,7 +247,7 @@ app.get("/admin", async(req, res) => {
     }
     else{
         const users = await Usermodel.find({});
-        res.render("index.ejs", {
+        res.render("index", {
             title: "this is admin page",
             users: users
         })
@@ -289,7 +289,7 @@ app.get("/register",(req,res)=>{
 app.get("/edit/:id",async(req,res)=>{
     const id = req.params.id;
     const user = await Usermodel.findById(id);
-    res.render("edit.ejs",{
+    res.render("edit",{
         user:user
     })
 })
@@ -335,7 +335,7 @@ app.post("/login",async(req,res)=>{
             req.session.user_id = user._id;
             console.log(req.session.user_id);
             console.log(user._id);
-            res.render("verifyotp.ejs")
+            res.render("verifyotp")
             
         }
         else{
@@ -359,7 +359,7 @@ app.get("/dashboard",(req,res)=>{
         res.redirect("/login");
     }
     else{
-        res.render("dashboard.ejs");
+        res.render("dashboard");
 
     }
 })
@@ -397,7 +397,7 @@ app.get("/dashboard",(req,res)=>{
       }
         if (parseInt(req.session.otp) === parseInt(otp)) {
         req.session.otp = null;
-        res.render("dashboard.ejs");
+        res.render("dashboard");
       } else {
         res.status(400).send('Invalid OTP');
       }
