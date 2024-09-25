@@ -26,7 +26,7 @@ app.use(session({
 
 const mongoose = require("mongoose");
 const { match } = require("assert");
-mongoose.connect("mongodb://localhost:27017/crud_in_node").then(()=>{
+mongoose.connect("mongodb+srv://ranjit:ranjit@ranjit.ed26i.mongodb.net/?retryWrites=true&w=majority&appName=ranjit").then(()=>{
     console.log("database connected");
 }).catch((e) => {
     console.log(e);
